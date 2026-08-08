@@ -1,12 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrintCost</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -18,9 +17,7 @@ body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-button,
-input,
-select{
+button,input,select{
     font:inherit;
 }
 
@@ -28,13 +25,11 @@ button{
     cursor:pointer;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
-
 .side{
     position:fixed;
-    inset:0 auto 0 0;
+    left:0;
+    top:0;
+    bottom:0;
     width:230px;
     padding:24px 15px;
     background:#0c0d12;
@@ -71,15 +66,11 @@ button{
     border-radius:11px;
 }
 
-.nav button.active,
-.nav button:hover{
+.nav button:hover,
+.nav button.active{
     background:#191b24;
     color:#fff;
 }
-
-/* =========================
-   MAIN
-========================= */
 
 .main{
     margin-left:230px;
@@ -129,10 +120,6 @@ button{
     margin-top:7px;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .primary{
     border:0;
     border-radius:11px;
@@ -158,10 +145,6 @@ button{
     background:#1d2029;
 }
 
-/* =========================
-   LAYOUT
-========================= */
-
 .layout{
     display:grid;
     grid-template-columns:minmax(0,1.4fr) 350px;
@@ -183,6 +166,7 @@ button{
 .head{
     display:flex;
     justify-content:space-between;
+    gap:15px;
     margin-bottom:17px;
 }
 
@@ -204,11 +188,8 @@ button{
     border:1px solid #8172ff33;
     border-radius:99px;
     padding:5px 8px;
+    white-space:nowrap;
 }
-
-/* =========================
-   INPUTS
-========================= */
 
 .field label{
     display:block;
@@ -239,6 +220,11 @@ button{
     border-color:#7164e6;
 }
 
+.input input[readonly]{
+    color:#aaa;
+    background:#101218;
+}
+
 .suffix{
     position:absolute;
     right:12px;
@@ -251,18 +237,9 @@ button{
 .help{
     color:#707686;
     font-size:10px;
-    line-height:1.45;
+    line-height:1.5;
     margin-top:8px;
 }
-
-.name{
-    font-size:15px;
-    font-weight:650;
-}
-
-/* =========================
-   GRIDS
-========================= */
 
 .grid2{
     display:grid;
@@ -275,10 +252,6 @@ button{
     grid-template-columns:1.2fr 1fr 1fr;
     gap:10px;
 }
-
-/* =========================
-   ELEMENTS
-========================= */
 
 .part{
     background:#0c0e13;
@@ -338,10 +311,6 @@ button{
     color:#fff;
 }
 
-/* =========================
-   FILAMENT INFO
-========================= */
-
 .filament-box{
     margin-top:14px;
     padding:13px;
@@ -373,10 +342,6 @@ button{
     color:#656b79;
 }
 
-/* =========================
-   RESULT
-========================= */
-
 .result{
     position:sticky;
     top:24px;
@@ -384,11 +349,7 @@ button{
 
 .hero{
     background:
-        radial-gradient(
-            circle at 90% 0,
-            #8172ff20,
-            transparent 45%
-        ),
+        radial-gradient(circle at 90% 0,#8172ff20,transparent 45%),
         #11131b;
 }
 
@@ -442,10 +403,6 @@ button{
     margin-top:16px;
 }
 
-/* =========================
-   PRICE BREAKDOWN
-========================= */
-
 .rows{
     display:grid;
     gap:10px;
@@ -467,10 +424,6 @@ button{
     padding-top:12px;
 }
 
-/* =========================
-   VIEWS
-========================= */
-
 .view{
     display:none;
 }
@@ -478,10 +431,6 @@ button{
 .view.active{
     display:block;
 }
-
-/* =========================
-   HISTORY
-========================= */
 
 .history-item{
     display:flex;
@@ -530,9 +479,61 @@ button{
     font-size:12px;
 }
 
-/* =========================
-   TOAST
-========================= */
+/* FILAMENTY */
+
+.filament-list{
+    display:grid;
+    gap:9px;
+}
+
+.filament-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:13px;
+    border:1px solid #292c36;
+    border-radius:12px;
+    background:#0c0e13;
+}
+
+.filament-name{
+    font-weight:700;
+    font-size:13px;
+}
+
+.filament-price{
+    color:#8f87ff;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.filament-actions{
+    display:flex;
+    gap:6px;
+}
+
+.small-btn{
+    border:1px solid #292c36;
+    background:#171922;
+    color:#bbb;
+    border-radius:8px;
+    padding:7px 9px;
+    font-size:11px;
+}
+
+.small-btn:hover{
+    background:#22252f;
+    color:#fff;
+}
+
+.delete-btn:hover{
+    background:#321c24;
+}
+
+.add-filament{
+    margin-top:15px;
+}
 
 .toast{
     position:fixed;
@@ -546,6 +547,7 @@ button{
     transform:translateY(8px);
     transition:.2s;
     pointer-events:none;
+    z-index:100;
 }
 
 .toast.show{
@@ -553,9 +555,47 @@ button{
     transform:translateY(0);
 }
 
-/* =========================
-   MOBILE
-========================= */
+.modal-bg{
+    position:fixed;
+    inset:0;
+    background:#0009;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:50;
+    padding:20px;
+}
+
+.modal-bg.show{
+    display:flex;
+}
+
+.modal{
+    width:min(430px,100%);
+    background:#11131b;
+    border:1px solid #292c36;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 25px 80px #0008;
+}
+
+.modal h2{
+    margin:0 0 5px;
+    font-size:18px;
+}
+
+.modal p{
+    color:#777e8d;
+    font-size:11px;
+    margin:0 0 18px;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:18px;
+}
 
 @media(max-width:900px){
 
@@ -575,7 +615,6 @@ button{
     .result{
         position:static;
     }
-
 }
 
 @media(max-width:600px){
@@ -597,18 +636,17 @@ button{
         font-size:42px;
     }
 
+    .history-item{
+        align-items:flex-start;
+        flex-direction:column;
+    }
 }
-
 </style>
 </head>
 
 
 <body>
 
-
-<!-- =========================
-     SIDEBAR
-========================= -->
 
 <aside class="side">
 
@@ -619,22 +657,15 @@ button{
 
     <nav class="nav">
 
-        <button
-            class="active"
-            data-view="calculator"
-        >
+        <button class="active" data-view="calculator">
             ⌂ &nbsp; Nowe zlecenie
         </button>
 
-        <button
-            data-view="history"
-        >
+        <button data-view="history">
             ◷ &nbsp; Historia
         </button>
 
-        <button
-            data-view="settings"
-        >
+        <button data-view="settings">
             ⚙ &nbsp; Ustawienia
         </button>
 
@@ -642,10 +673,6 @@ button{
 
 </aside>
 
-
-<!-- =========================
-     MAIN
-========================= -->
 
 <main class="main">
 
@@ -682,33 +709,23 @@ button{
     </div>
 
 
-    <button
-        class="primary"
-        id="newOrderButton"
-    >
+    <button class="primary" id="newOrderButton">
         ＋ Nowe zlecenie
     </button>
 
 </header>
 
 
-<!-- =========================
-     CALCULATOR
-========================= -->
+<!-- =========================================
+     NOWE ZLECENIE
+========================================= -->
 
-<section
-    id="calculator"
-    class="view active"
->
-
+<section id="calculator" class="view active">
 
 <div class="layout">
 
-
 <div class="stack">
 
-
-<!-- NAZWA ZLECENIA -->
 
 <div class="card">
 
@@ -722,7 +739,7 @@ button{
 
             <p>
                 Nazwij zlecenie, żeby łatwo
-                znaleźć je później w historii.
+                znaleźć je później.
             </p>
 
         </div>
@@ -738,7 +755,6 @@ button{
 
         <input
             id="orderName"
-            class="name"
             placeholder="np. Zestaw uchwytów"
         >
 
@@ -760,8 +776,8 @@ button{
             </h2>
 
             <p>
-                Dodaj wszystkie części, które
-                mają być wykonane w tym zamówieniu.
+                Dodaj wszystkie części należące
+                do jednego zamówienia.
             </p>
 
         </div>
@@ -776,27 +792,20 @@ button{
     <div id="partsContainer"></div>
 
 
-    <button
-        class="add"
-        id="addPartButton"
-    >
+    <button class="add" id="addPartButton">
         ＋ Dodaj element
     </button>
 
 
     <div class="help">
-
-        Zużycie filamentu podaj w gramach.
-        Czas drukowania podaj w minutach.
-        Dane możesz przepisać bezpośrednio
-        ze slicera.
-
+        Dane o gramach i czasie możesz
+        przepisać bezpośrednio ze slicera.
     </div>
 
 </div>
 
 
-<!-- MATERIAŁ -->
+<!-- FILAMENT -->
 
 <div class="card">
 
@@ -805,12 +814,12 @@ button{
         <div>
 
             <h2>
-                Materiał
+                Filament
             </h2>
 
             <p>
-                Cena filamentu jest liczona
-                automatycznie na podstawie jego wagi.
+                Wybierz rolkę, której używasz
+                do tego zlecenia.
             </p>
 
         </div>
@@ -824,40 +833,16 @@ button{
 
     <div class="grid2">
 
+
         <div class="field">
 
             <label>
-                Rodzaj filamentu
+                Wybrany filament
             </label>
 
             <div class="input">
 
-                <select id="filamentType">
-
-                    <option value="PLA">
-                        PLA
-                    </option>
-
-                    <option value="PETG">
-                        PETG
-                    </option>
-
-                    <option value="TPU">
-                        TPU
-                    </option>
-
-                    <option value="ABS">
-                        ABS
-                    </option>
-
-                    <option value="ASA">
-                        ASA
-                    </option>
-
-                    <option value="Inny">
-                        Inny
-                    </option>
-
+                <select id="filamentSelect">
                 </select>
 
             </div>
@@ -876,9 +861,7 @@ button{
                 <input
                     id="filamentPrice"
                     type="number"
-                    value="85"
-                    min="0"
-                    step=".01"
+                    readonly
                 >
 
                 <span class="suffix">
@@ -931,8 +914,8 @@ button{
 
 
         <div class="filament-note">
-            Przykład: 100 g filamentu przy
-            cenie 85 zł/kg kosztuje 8,50 zł.
+            Cena jest automatycznie pobierana
+            z Twojej listy filamentów.
         </div>
 
     </div>
@@ -953,7 +936,7 @@ button{
             </h2>
 
             <p>
-                Te wartości dotyczą całego zlecenia.
+                Koszty związane z wykonaniem wydruku.
             </p>
 
         </div>
@@ -1108,8 +1091,8 @@ button{
             </h2>
 
             <p>
-                Twój czas przygotowania liczony
-                jest raz dla całego zlecenia.
+                Czas przygotowania, obsługi i odbioru
+                wydruku.
             </p>
 
         </div>
@@ -1206,9 +1189,7 @@ button{
 </div>
 
 
-<!-- =========================
-     PODSUMOWANIE
-========================= -->
+<!-- PODSUMOWANIE -->
 
 <aside class="result">
 
@@ -1316,8 +1297,6 @@ button{
 </div>
 
 
-<!-- ROZBICIE CENY -->
-
 <div
     class="card"
     style="margin-top:17px"
@@ -1332,7 +1311,7 @@ button{
             </h2>
 
             <p>
-                Dokładnie widzisz, za co płaci klient.
+                Dokładnie widzisz, skąd bierze się cena.
             </p>
 
         </div>
@@ -1344,80 +1323,38 @@ button{
 
 
         <div class="row">
-
-            <span>
-                Filament
-            </span>
-
-            <b id="breakdownMaterial">
-                0,00 zł
-            </b>
-
+            <span>Filament</span>
+            <b id="breakdownMaterial">0,00 zł</b>
         </div>
 
 
         <div class="row">
-
-            <span>
-                Prąd
-            </span>
-
-            <b id="breakdownElectricity">
-                0,00 zł
-            </b>
-
+            <span>Prąd</span>
+            <b id="breakdownElectricity">0,00 zł</b>
         </div>
 
 
         <div class="row">
-
-            <span>
-                Amortyzacja
-            </span>
-
-            <b id="breakdownDepreciation">
-                0,00 zł
-            </b>
-
+            <span>Amortyzacja</span>
+            <b id="breakdownDepreciation">0,00 zł</b>
         </div>
 
 
         <div class="row">
-
-            <span>
-                Eksploatacja
-            </span>
-
-            <b id="breakdownMaintenance">
-                0,00 zł
-            </b>
-
+            <span>Eksploatacja</span>
+            <b id="breakdownMaintenance">0,00 zł</b>
         </div>
 
 
         <div class="row">
-
-            <span>
-                Twój czas
-            </span>
-
-            <b id="breakdownWork">
-                0,00 zł
-            </b>
-
+            <span>Twój czas</span>
+            <b id="breakdownWork">0,00 zł</b>
         </div>
 
 
         <div class="row total">
-
-            <span>
-                Koszt wykonania
-            </span>
-
-            <b id="breakdownTotal">
-                0,00 zł
-            </b>
-
+            <span>Koszt wykonania</span>
+            <b id="breakdownTotal">0,00 zł</b>
         </div>
 
 
@@ -1428,20 +1365,16 @@ button{
 
 </aside>
 
-
 </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =========================================
      HISTORIA
-========================= -->
+========================================= -->
 
-<section
-    id="history"
-    class="view"
->
+<section id="history" class="view">
 
 <div class="card">
 
@@ -1477,14 +1410,11 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =========================================
      USTAWIENIA
-========================= -->
+========================================= -->
 
-<section
-    id="settings"
-    class="view"
->
+<section id="settings" class="view">
 
 <div class="card">
 
@@ -1493,12 +1423,62 @@ button{
         <div>
 
             <h2>
-                Ustawienia
+                Moje filamenty
             </h2>
 
             <p>
-                Tutaj możesz w przyszłości
-                ustawić domyślne wartości drukarki.
+                Dodaj rolki, które masz w swojej pracowni.
+                PrintCost będzie używał ich cen podczas wyceny.
+            </p>
+
+        </div>
+
+        <span class="step">
+            FILAMENTY
+        </span>
+
+    </div>
+
+
+    <div
+        class="filament-list"
+        id="filamentList"
+    ></div>
+
+
+    <button
+        class="add add-filament"
+        id="addFilamentButton"
+    >
+        ＋ Dodaj filament
+    </button>
+
+
+    <div class="help">
+
+        Przykład: „PLA Spectrum” → 79,99 zł/kg.
+        Cena zostanie zapamiętana w tej przeglądarce.
+
+    </div>
+
+</div>
+
+
+<div
+    class="card"
+    style="margin-top:17px"
+>
+
+    <div class="head">
+
+        <div>
+
+            <h2>
+                Domyślne ustawienia drukarki
+            </h2>
+
+            <p>
+                Wartości używane przy nowych wycenach.
             </p>
 
         </div>
@@ -1506,17 +1486,116 @@ button{
     </div>
 
 
-    <div class="help">
+    <div class="grid2">
 
-        Aktualnie domyślna cena filamentu
-        wynosi 85 zł/kg.
 
-        <br><br>
+        <div class="field">
 
-        Wartości możesz zmieniać bezpośrednio
-        podczas tworzenia wyceny.
+            <label>
+                Moc drukarki
+            </label>
+
+            <div class="input">
+
+                <input
+                    id="settingsPower"
+                    type="number"
+                    value="120"
+                    min="0"
+                >
+
+                <span class="suffix">
+                    W
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Cena prądu
+            </label>
+
+            <div class="input">
+
+                <input
+                    id="settingsElectricity"
+                    type="number"
+                    value="1.20"
+                    min="0"
+                    step=".01"
+                >
+
+                <span class="suffix">
+                    zł/kWh
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Cena drukarki
+            </label>
+
+            <div class="input">
+
+                <input
+                    id="settingsPrinterPrice"
+                    type="number"
+                    value="1800"
+                    min="0"
+                >
+
+                <span class="suffix">
+                    zł
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Żywotność drukarki
+            </label>
+
+            <div class="input">
+
+                <input
+                    id="settingsPrinterLife"
+                    type="number"
+                    value="3000"
+                    min="1"
+                >
+
+                <span class="suffix">
+                    godz.
+                </span>
+
+            </div>
+
+        </div>
+
 
     </div>
+
+
+    <button
+        class="primary"
+        style="margin-top:15px"
+        id="saveSettingsButton"
+    >
+        Zapisz ustawienia
+    </button>
 
 </div>
 
@@ -1524,6 +1603,97 @@ button{
 
 
 </main>
+
+
+<!-- =========================================
+     MODAL FILAMENTU
+========================================= -->
+
+<div
+    class="modal-bg"
+    id="filamentModal"
+>
+
+<div class="modal">
+
+    <h2 id="modalTitle">
+        Dodaj filament
+    </h2>
+
+    <p>
+        Podaj nazwę filamentu i cenę jednej rolki
+        przeliczoną na kilogram.
+    </p>
+
+
+    <div class="field">
+
+        <label>
+            Nazwa filamentu
+        </label>
+
+        <div class="input">
+
+            <input
+                id="modalFilamentName"
+                placeholder="np. PLA Spectrum"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="field"
+        style="margin-top:13px"
+    >
+
+        <label>
+            Cena za kilogram
+        </label>
+
+        <div class="input">
+
+            <input
+                id="modalFilamentPrice"
+                type="number"
+                min="0"
+                step=".01"
+                placeholder="79.99"
+            >
+
+            <span class="suffix">
+                zł/kg
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal-actions">
+
+        <button
+            class="secondary"
+            id="cancelFilamentButton"
+        >
+            Anuluj
+        </button>
+
+
+        <button
+            class="primary"
+            id="saveFilamentButton"
+        >
+            Zapisz filament
+        </button>
+
+    </div>
+
+</div>
+
+</div>
 
 
 <div
@@ -1544,6 +1714,505 @@ const $ = id =>
 
 let parts = [];
 
+let editingFilamentId = null;
+
+
+/* =====================================================
+   FILAMENTY
+===================================================== */
+
+const defaultFilaments = [
+
+    {
+        id:1,
+        name:"PLA",
+        price:85
+    },
+
+    {
+        id:2,
+        name:"PETG",
+        price:90
+    }
+
+];
+
+
+function getFilaments(){
+
+    const saved =
+        localStorage.getItem(
+            "printcost_filaments"
+        );
+
+
+    if(saved){
+
+        try{
+
+            return JSON.parse(saved);
+
+        }
+        catch{
+
+            return defaultFilaments;
+
+        }
+
+    }
+
+
+    localStorage.setItem(
+        "printcost_filaments",
+        JSON.stringify(defaultFilaments)
+    );
+
+
+    return defaultFilaments;
+
+}
+
+
+function saveFilaments(list){
+
+    localStorage.setItem(
+        "printcost_filaments",
+        JSON.stringify(list)
+    );
+
+}
+
+
+function renderFilamentSelect(){
+
+    const list =
+        getFilaments();
+
+
+    const select =
+        $("filamentSelect");
+
+
+    const current =
+        select.value;
+
+
+    select.innerHTML =
+        list
+        .map(
+            filament => `
+
+            <option value="${filament.id}">
+                ${escapeHTML(filament.name)}
+            </option>
+
+            `
+        )
+        .join("");
+
+
+    if(
+        list.some(
+            filament =>
+                String(filament.id) ===
+                String(current)
+        )
+    ){
+
+        select.value =
+            current;
+
+    }
+
+
+    updateFilamentPrice();
+
+}
+
+
+function renderFilamentList(){
+
+    const list =
+        getFilaments();
+
+
+    const container =
+        $("filamentList");
+
+
+    if(!list.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Nie masz jeszcze żadnych filamentów.
+
+                <br><br>
+
+                Dodaj pierwszy filament.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        list
+        .map(
+            filament => `
+
+            <div class="filament-item">
+
+                <div>
+
+                    <div class="filament-name">
+                        ${escapeHTML(filament.name)}
+                    </div>
+
+                    <div class="filament-price">
+                        ${money(filament.price)} / kg
+                    </div>
+
+                </div>
+
+
+                <div class="filament-actions">
+
+                    <button
+                        class="small-btn"
+                        data-edit-filament="${filament.id}"
+                    >
+                        Edytuj
+                    </button>
+
+
+                    <button
+                        class="small-btn delete-btn"
+                        data-delete-filament="${filament.id}"
+                    >
+                        Usuń
+                    </button>
+
+                </div>
+
+            </div>
+
+            `
+        )
+        .join("");
+
+
+    document
+        .querySelectorAll("[data-edit-filament]")
+        .forEach(button => {
+
+            button.onclick =
+                () => {
+
+                    openEditFilament(
+                        Number(
+                            button.dataset.editFilament
+                        )
+                    );
+
+                };
+
+        });
+
+
+    document
+        .querySelectorAll("[data-delete-filament]")
+        .forEach(button => {
+
+            button.onclick =
+                () => {
+
+                    deleteFilament(
+                        Number(
+                            button.dataset.deleteFilament
+                        )
+                    );
+
+                };
+
+        });
+
+}
+
+
+function updateFilamentPrice(){
+
+    const list =
+        getFilaments();
+
+
+    const id =
+        Number(
+            $("filamentSelect").value
+        );
+
+
+    const filament =
+        list.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!filament){
+
+        $("filamentPrice").value =
+            "";
+
+        calculate();
+
+        return;
+
+    }
+
+
+    $("filamentPrice").value =
+        filament.price;
+
+
+    calculate();
+
+}
+
+
+function openAddFilament(){
+
+    editingFilamentId =
+        null;
+
+
+    $("modalTitle").textContent =
+        "Dodaj filament";
+
+
+    $("modalFilamentName").value =
+        "";
+
+
+    $("modalFilamentPrice").value =
+        "";
+
+
+    $("filamentModal")
+        .classList.add("show");
+
+
+    setTimeout(
+        () => {
+            $("modalFilamentName").focus();
+        },
+        50
+    );
+
+}
+
+
+function openEditFilament(id){
+
+    const filament =
+        getFilaments().find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!filament){
+        return;
+    }
+
+
+    editingFilamentId =
+        id;
+
+
+    $("modalTitle").textContent =
+        "Edytuj filament";
+
+
+    $("modalFilamentName").value =
+        filament.name;
+
+
+    $("modalFilamentPrice").value =
+        filament.price;
+
+
+    $("filamentModal")
+        .classList.add("show");
+
+}
+
+
+function closeFilamentModal(){
+
+    $("filamentModal")
+        .classList.remove("show");
+
+
+    editingFilamentId =
+        null;
+
+}
+
+
+function saveFilament(){
+
+    const name =
+        $("modalFilamentName")
+            .value
+            .trim();
+
+
+    const price =
+        Number(
+            $("modalFilamentPrice")
+                .value
+        );
+
+
+    if(!name){
+
+        showToast(
+            "Podaj nazwę filamentu"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !Number.isFinite(price) ||
+        price < 0
+    ){
+
+        showToast(
+            "Podaj poprawną cenę"
+        );
+
+        return;
+
+    }
+
+
+    let list =
+        getFilaments();
+
+
+    if(editingFilamentId !== null){
+
+        const filament =
+            list.find(
+                item =>
+                    item.id ===
+                    editingFilamentId
+            );
+
+
+        if(filament){
+
+            filament.name =
+                name;
+
+            filament.price =
+                price;
+
+        }
+
+    }
+    else{
+
+        list.push({
+
+            id:
+                Date.now(),
+
+            name,
+
+            price
+
+        });
+
+    }
+
+
+    saveFilaments(list);
+
+    renderFilamentList();
+
+    renderFilamentSelect();
+
+    closeFilamentModal();
+
+    showToast(
+        "Filament zapisany"
+    );
+
+}
+
+
+function deleteFilament(id){
+
+    const list =
+        getFilaments();
+
+
+    const filament =
+        list.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!filament){
+        return;
+    }
+
+
+    if(
+        !confirm(
+            `Usunąć filament „${filament.name}”?`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const newList =
+        list.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveFilaments(newList);
+
+    renderFilamentList();
+
+    renderFilamentSelect();
+
+    showToast(
+        "Filament usunięty"
+    );
+
+}
+
+
+/* =====================================================
+   OGÓLNE
+===================================================== */
 
 function money(value){
 
@@ -1626,8 +2295,10 @@ function showToast(text){
 
     setTimeout(
         () => {
+
             $("toast")
                 .classList.remove("show");
+
         },
         1600
     );
@@ -1863,12 +2534,10 @@ function renderParts(){
 
 
 /* =====================================================
-   KALKULACJA
+   KALKULATOR
 ===================================================== */
 
 function calculate(){
-
-    /* FILAMENT */
 
     const totalGrams =
         parts.reduce(
@@ -1878,8 +2547,6 @@ function calculate(){
             0
         );
 
-
-    /* CZAS DRUKU */
 
     const totalMinutes =
         parts.reduce(
@@ -1894,22 +2561,11 @@ function calculate(){
         totalMinutes / 60;
 
 
-    /* CENA FILAMENTU */
-
     const filamentPrice =
         Number(
             $("filamentPrice").value
         ) || 0;
 
-
-    /*
-        grams / 1000 = kilogramy
-
-        np.
-        365 g / 1000 = 0,365 kg
-
-        0,365 × 85 zł = 31,025 zł
-    */
 
     const materialCost =
         (
@@ -1917,8 +2573,6 @@ function calculate(){
         ) *
         filamentPrice;
 
-
-    /* PRĄD */
 
     const printerPower =
         Number(
@@ -1939,8 +2593,6 @@ function calculate(){
         printHours *
         electricityPrice;
 
-
-    /* AMORTYZACJA */
 
     const printerPrice =
         Number(
@@ -1965,8 +2617,6 @@ function calculate(){
         printHours;
 
 
-    /* EKSPLOATACJA */
-
     const maintenance =
         Number(
             $("maintenance").value
@@ -1977,8 +2627,6 @@ function calculate(){
         printHours *
         maintenance;
 
-
-    /* TWÓJ CZAS */
 
     const workMinutes =
         Number(
@@ -1999,8 +2647,6 @@ function calculate(){
         hourlyRate;
 
 
-    /* KOSZT WYKONANIA */
-
     const totalCost =
         materialCost +
         electricityCost +
@@ -2008,8 +2654,6 @@ function calculate(){
         maintenanceCost +
         workCost;
 
-
-    /* MARŻA */
 
     const margin =
         Number(
@@ -2023,16 +2667,9 @@ function calculate(){
         100;
 
 
-    /* CENA KLIENTA */
-
     const finalPrice =
         totalCost +
         profit;
-
-
-    /* =================================================
-       AKTUALIZACJA UI
-    ================================================= */
 
 
     $("finalPrice").textContent =
@@ -2050,8 +2687,7 @@ function calculate(){
             {
                 maximumFractionDigits:2
             }
-        ) +
-        " g";
+        ) + " g";
 
 
     $("summaryTime").textContent =
@@ -2072,8 +2708,7 @@ function calculate(){
             {
                 maximumFractionDigits:2
             }
-        ) +
-        " g";
+        ) + " g";
 
 
     $("materialCost").textContent =
@@ -2107,23 +2742,14 @@ function calculate(){
     return {
 
         totalGrams,
-
         totalMinutes,
-
         materialCost,
-
         electricityCost,
-
         depreciationCost,
-
         maintenanceCost,
-
         workCost,
-
         totalCost,
-
         profit,
-
         finalPrice
 
     };
@@ -2201,6 +2827,13 @@ function showView(view){
 
     }
 
+
+    if(view === "settings"){
+
+        renderFilamentList();
+
+    }
+
 }
 
 
@@ -2235,6 +2868,14 @@ $("renameButton").onclick =
 
 
 /* =====================================================
+   FILAMENT SELECT
+===================================================== */
+
+$("filamentSelect").onchange =
+    updateFilamentPrice;
+
+
+/* =====================================================
    PRZYCISKI
 ===================================================== */
 
@@ -2254,6 +2895,39 @@ $("addPartButton").onclick =
     };
 
 
+$("addFilamentButton").onclick =
+    openAddFilament;
+
+
+$("cancelFilamentButton").onclick =
+    closeFilamentModal;
+
+
+$("saveFilamentButton").onclick =
+    saveFilament;
+
+
+/* kliknięcie poza modalem */
+
+$("filamentModal").onclick =
+    event => {
+
+        if(
+            event.target ===
+            $("filamentModal")
+        ){
+
+            closeFilamentModal();
+
+        }
+
+    };
+
+
+/* =====================================================
+   NAWIGACJA
+===================================================== */
+
 document
     .querySelectorAll(".nav button")
     .forEach(button => {
@@ -2271,11 +2945,10 @@ document
 
 
 /* =====================================================
-   AUTOMATYCZNE PRZELICZANIE
+   AUTOMATYCZNE LICZENIE
 ===================================================== */
 
 [
-    "filamentPrice",
     "printerPower",
     "electricityPrice",
     "printerPrice",
@@ -2295,12 +2968,123 @@ document
 );
 
 
-$("filamentType").onchange =
-    calculate;
+/* =====================================================
+   USTAWIENIA DRUKARKI
+===================================================== */
+
+$("saveSettingsButton").onclick =
+    () => {
+
+        $("printerPower").value =
+            $("settingsPower").value;
+
+
+        $("electricityPrice").value =
+            $("settingsElectricity").value;
+
+
+        $("printerPrice").value =
+            $("settingsPrinterPrice").value;
+
+
+        $("printerLife").value =
+            $("settingsPrinterLife").value;
+
+
+        localStorage.setItem(
+            "printcost_settings",
+            JSON.stringify({
+
+                power:
+                    $("settingsPower").value,
+
+                electricity:
+                    $("settingsElectricity").value,
+
+                printerPrice:
+                    $("settingsPrinterPrice").value,
+
+                printerLife:
+                    $("settingsPrinterLife").value
+
+            })
+        );
+
+
+        calculate();
+
+
+        showToast(
+            "Ustawienia zapisane"
+        );
+
+    };
+
+
+function loadSettings(){
+
+    const saved =
+        localStorage.getItem(
+            "printcost_settings"
+        );
+
+
+    if(!saved){
+        return;
+    }
+
+
+    try{
+
+        const settings =
+            JSON.parse(saved);
+
+
+        $("settingsPower").value =
+            settings.power;
+
+
+        $("settingsElectricity").value =
+            settings.electricity;
+
+
+        $("settingsPrinterPrice").value =
+            settings.printerPrice;
+
+
+        $("settingsPrinterLife").value =
+            settings.printerLife;
+
+
+        $("printerPower").value =
+            settings.power;
+
+
+        $("electricityPrice").value =
+            settings.electricity;
+
+
+        $("printerPrice").value =
+            settings.printerPrice;
+
+
+        $("printerLife").value =
+            settings.printerLife;
+
+    }
+    catch{
+
+        console.log(
+            "Nie udało się wczytać ustawień"
+        );
+
+    }
+
+}
 
 
 /* =====================================================
-   ZAPIS DO HISTORII
+   ZAPIS ZLECENIA
 ===================================================== */
 
 $("saveButton").onclick =
@@ -2315,6 +3099,16 @@ $("saveButton").onclick =
                 localStorage.getItem(
                     "printcost_history"
                 ) || "[]"
+            );
+
+
+        const filament =
+            getFilaments().find(
+                item =>
+                    item.id ===
+                    Number(
+                        $("filamentSelect").value
+                    )
             );
 
 
@@ -2333,14 +3127,14 @@ $("saveButton").onclick =
                     ),
 
             filament:
-                $("filamentType")
-                    .value,
+                filament
+                    ? filament.name
+                    : "Brak",
 
             filamentPrice:
-                Number(
-                    $("filamentPrice")
-                        .value
-                ) || 0,
+                filament
+                    ? filament.price
+                    : 0,
 
             parts:
                 parts.length,
@@ -2381,15 +3175,33 @@ $("copyButton").onclick =
             calculate();
 
 
+        const filament =
+            getFilaments().find(
+                item =>
+                    item.id ===
+                    Number(
+                        $("filamentSelect").value
+                    )
+            );
+
+
         const text =
 
 `${$("orderName").value.trim() || "Bez nazwy"}
 
 Elementów: ${parts.length}
-Filament: ${result.totalGrams} g
-Materiał: ${$("filamentType").value}
-Cena filamentu: ${$("filamentPrice").value} zł/kg
-Czas druku: ${duration(result.totalMinutes)}
+
+Filament:
+${filament ? filament.name : "Brak"}
+
+Zużycie filamentu:
+${result.totalGrams} g
+
+Cena filamentu:
+${filament ? filament.price : 0} zł/kg
+
+Czas druku:
+${duration(result.totalMinutes)}
 
 Koszt wykonania:
 ${money(result.totalCost)}
@@ -2481,8 +3293,8 @@ function renderHistory(){
                         ${item.parts}
                         ${
                             item.parts === 1
-                            ? "element"
-                            : "elementów"
+                            ? " element"
+                            : " elementów"
                         }
 
                         •
@@ -2568,6 +3380,12 @@ function renderHistory(){
 /* =====================================================
    START
 ===================================================== */
+
+loadSettings();
+
+renderFilamentList();
+
+renderFilamentSelect();
 
 addPart();
 
